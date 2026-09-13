@@ -1,4 +1,5 @@
 ﻿--ASSIGNMENT 1
+
 SELECT name FROM employee WHERE salary > '20000';
 SELECT * FROM employee WHERE salary='51000';
 SELECT name,experience FROM employee WHERE age>'35';
@@ -11,9 +12,8 @@ DELETE FROM employee WHERE experience=’21';
 UPDATE employee SET salary = salary-'21000' WHERE id='5';
 
 
-
-
 --ASSIGNMENT 2
+  
 ALTER TABLE employee ADD branch_location VARCHAR(100);
 SELECT SUM(salary) AS total_salary FROM employee;
 SELECT MAX(salary) AS highest_salary FROM employee WHERE profile=‘test';
