@@ -1,30 +1,101 @@
-﻿--ASSIGNMENT 1
+﻿-- ASSIGNMENT 1
 
-SELECT name FROM employee WHERE salary > '20000';
-SELECT * FROM employee WHERE salary='51000';
-SELECT name,experience FROM employee WHERE age>'35';
-SELECT name FROM employee WHERE profile='dev';
-SELECT name FROM employee WHERE profile='test';
-SELECT * FROM employee WHERE salary>='25000';
-SELECT name,email FROM employee WHERE salary!='51000';
-UPDATE employee SET salary='10000' WHERE experience<'20';
-DELETE FROM employee WHERE experience=’21';
-UPDATE employee SET salary = salary-'21000' WHERE id='5';
+SELECT name
+FROM employee
+WHERE salary > 20000;
+
+SELECT *
+FROM employee
+WHERE salary = 51000;
+
+SELECT name, experience
+FROM employee
+WHERE age > 35;
+
+SELECT name
+FROM employee
+WHERE profile = 'dev';
+
+SELECT name
+FROM employee
+WHERE profile = 'test';
+
+SELECT *
+FROM employee
+WHERE salary >= 25000;
+
+SELECT name, email
+FROM employee
+WHERE salary != 51000;
+
+UPDATE employee
+SET salary = 10000
+WHERE experience < 20;
+
+DELETE FROM employee
+WHERE experience = 21;
+
+UPDATE employee
+SET salary = salary - 21000
+WHERE id = 5;
 
 
---ASSIGNMENT 2
-  
-ALTER TABLE employee ADD branch_location VARCHAR(100);
-SELECT SUM(salary) AS total_salary FROM employee;
-SELECT MAX(salary) AS highest_salary FROM employee WHERE profile=‘test';
-SELECT AVG(experience) AS average_experience FROM employee;
-SELECT name FROM employee ORDER BY salary DESC LIMIT 1;
-SELECT name, experience FROM employee ORDER BY salary ASC LIMIT 1;
-SELECT COUNT(*) AS total_employee FROM employee;
-SELECT name FROM employee WHERE profile = 'test' AND salary>’25000';
-UPDATE employee SET profile ='support'  WHERE name = ‘radha';
-SELECT MAX(salary) AS second_high_salary FROM employee WHERE salary <(SELECT MAX(salary) FROM employee);
-SELECT MIN(salary) AS secondd_low_salary FROM employee WHERE salary >(SELECT MIN(salary) FROM employee);
-SELECT name,salary FROM employee WHERE experience = (SELECT MIN(experience) FROM employee);
-SELECT * FROM employee WHERE  MIN(age) AS lowest_age FROM employee AND  salary=(SELECT MAX(salary) FROM employee);
+-- ASSIGNMENT 2
+
+ALTER TABLE employee
+ADD branch_location VARCHAR(100);
+
+SELECT SUM(salary) AS total_salary
+FROM employee;
+
+SELECT MAX(salary) AS highest_salary
+FROM employee
+WHERE profile = 'test';
+
+SELECT AVG(experience) AS average_experience
+FROM employee;
+
+SELECT name
+FROM employee
+ORDER BY salary DESC
+LIMIT 1;
+
+SELECT name, experience
+FROM employee
+ORDER BY salary ASC
+LIMIT 1;
+
+SELECT COUNT(*) AS total_employee
+FROM employee;
+
+SELECT name
+FROM employee
+WHERE profile = 'test'
+AND salary > 25000;
+
+UPDATE employee
+SET profile = 'support'
+WHERE name = 'Radha';
+
+SELECT MAX(salary) AS second_high_salary
+FROM employee
+WHERE salary < (SELECT MAX(salary) FROM employee);
+
+SELECT MIN(salary) AS second_low_salary
+FROM employee
+WHERE salary > (SELECT MIN(salary) FROM employee);
+
+SELECT name, salary
+FROM employee
+WHERE experience = (SELECT MIN(experience) FROM employee);
+
+SELECT name, age, salary
+FROM employee
+WHERE salary = (SELECT MAX(salary) FROM employee)
+AND age = (
+    SELECT MIN(age)
+    FROM employee
+    WHERE salary = (SELECT MAX(salary) FROM employee)
+);
+
 DELETE FROM employee;
